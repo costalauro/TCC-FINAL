@@ -1,0 +1,15 @@
+label 
+    font: 20px "typewriter", sans-serif
+    display: inline-block
+    width: 23%
+input, textarea
+    color:black
+    font: 18px "typewriter", sans-serif
+    margin-top: 20px
+h1
+    text-align: center
+    font-weight: bold
+    font: 30px "typewriter", sans-serif
+
+select
+    margin-top: 20px

@@ -1,0 +1,15 @@
+ form  
+        display:inline 
+    .txtadmin
+        color: #000000
+    
+    table, th, td   
+        padding: 5px 
+ 
+    table
+        border-spacing: 10px
+        border-collapse: separate    
+    
+    a:link 
+        font-weight: bold
+        color:#3777e1

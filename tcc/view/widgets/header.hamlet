@@ -1,0 +1,13 @@
+                    <nav ."navbar navbar-default navbar-static-top menu cor1"> 
+                        <div ."container">
+                            <div ."navbar-header">
+                                <button type="button" ."navbar-toggle" data-toggle="collapse" data-target="#navbar-ex-collapse">
+                                    <span ."sr-only">Navegação
+                                    <span ."icon-bar">
+                                    <span ."icon-bar">
+                                    <span ."icon-bar">
+                                <a ."navbar-brand" href=@{HomeR}>SISTREINA
+                            <div ."collapse navbar-collapse" #"navbar-ex-collapse">
+                                <ul ."nav navbar-nav navbar-right">
+                                    <li>
+                                        <a href=@{HomeR}>Home
