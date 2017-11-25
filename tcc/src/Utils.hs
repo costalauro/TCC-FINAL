@@ -1,7 +1,7 @@
 {-# LANGUAGE OverloadedStrings, QuasiQuotes,
              TemplateHaskell #-}
              
-module Tools where
+module Utils where
 import Routes
 import Yesod
 import Yesod.Static
@@ -22,39 +22,58 @@ import Data.Text.Lazy.Encoding
 
 logWid :: Widget
 logWid = [whamlet| 
-    Login
+    Entrar
 |]
-        
-coreWidget = do
+
+funcWid :: Widget
+funcWid = [whamlet| 
+    Cadastrar Funcionário
+|]
+
+deptWid :: Widget
+deptWid = [whamlet| 
+    Cadastrar Departamento
+|]
+
+profWid :: Widget
+profWid = [whamlet| 
+    Cadastrar Profissão
+|]
+
+treinWid :: Widget
+treinWid = [whamlet| 
+    Cadastrar Treinamento
+|]        
+masterWidget = do
             addStylesheet $ StaticR css_bootstrap_css
             addStylesheet $ StaticR css_fontawesomemin_css
             addStylesheet $ StaticR css_main_css  
             addScriptRemote "https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"
             addScriptRemote "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
-            toWidgetHead $(hamletFile "view/hamlet/head.hamlet")
-            toWidget $(luciusFile "view/lucius/core.lucius") 
+            toWidgetHead $(hamletFile "templates/hamlet/head.hamlet")
+            toWidget $(luciusFile "templates/lucius/principal.lucius")
+            toWidget $(luciusFile "templates/lucius/main.lucius")
+            toWidget $(luciusFile "templates/lucius/bootstrap.lucius")
 
-indexWidget :: Widget -> Widget
-indexWidget hamletWidget = do
-            coreWidget
-            $(whamletFile "view/widgets/header.hamlet") 
+customWidget :: Widget -> Widget
+customWidget hamletWidget = do
+            masterWidget
+            $(whamletFile "templates/widgets/header.hamlet") 
             hamletWidget
-            $(whamletFile "view/widgets/footer.hamlet")  
+            $(whamletFile "templates/widgets/footer.hamlet")  
 
 respWidget :: Widget -> Widget
 respWidget hamletWidget = do
-            coreWidget 
-            $(whamletFile "view/widgets/header.hamlet") 
+            masterWidget
+            $(whamletFile "templates/widgets/headerresp.hamlet") 
             hamletWidget
-            $(whamletFile "view/widgets/footer.hamlet")      
-            
-funcWidget :: Widget -> Widget
-funcWidget hamletWidget = do
-            coreWidget 
-            $(whamletFile "view/widgets/header.hamlet") 
-            hamletWidget
-            $(whamletFile "view/widgets/footer.hamlet")
-            
+            $(whamletFile "templates/widgets/footer.hamlet") 
+
+cadWidget = do    
+            toWidget $(cassiusFile "templates/cassius/form.cassius")         
+
+listWidget = do
+            toWidget $(cassiusFile "templates/cassius/list.cassius") 
             
 -- to generate generic forms
 

@@ -1,7 +1,8 @@
-    body{
+
+	body{
 		font-family:verdana,sans-serif;
 		font-size:16px;
-		background-color:rgba(255,255,255,0.90);
+		background: no-repeat center center fixed;
   		-webkit-background-size: cover;
   		-moz-background-size: cover;
   		-o-background-size: cover;
@@ -9,9 +10,12 @@
   		height: 100%;
 	}
 	
+	.navbar-brand:before{
+
+		}
 	
 	header{
-		background-color:rgba(255,255,255,0.90);
+        background: rgba(0, 0, 0, 0.5); 
 		border-radius:10px;
 		color:#008;
 	}
@@ -29,13 +33,12 @@
 		color:#008;
 	}
 	.fundo1{
-		background-color:rgba(68,153 ,221, 0.85);
-		border-radius:10px;
+		background-color:rgba(232,255 ,255, 0.85);
 	}
 	a{
 		text-decoration:none;	
 		transition: 0.5s;
-		color:#77ddff;
+		color:white;
 	}
 	a:hover{	
 		transition: 0.5s;
@@ -44,39 +47,30 @@
 		text-decoration:none;
 	}
 	nav{
-
 	}
 	
 	nav li{
-	
-		border-radius:4px;
 		list-style:none;
 		display:inline;	
 		margin:3px;
-		border-top-right-radius:19px;
-		border-bottom-left-radius:19px;
-		background-color:#0099ff;
-		color:#000;
+		background-color:black;
+		color:white;
 		font-weight:bold;
 		}
 
 	nav li a{
-		border-radius:4px;
-		border-top-right-radius:19px;
-		border-bottom-left-radius:19px;
-		color:#fff;	
-		background-color:#332299;
+		color:grey;	
+		background-color:white;
 	}
 	.links{
 		margin:15px;
 	}
 	
 	.links a{
-		border-radius:10px;
 		position:relative;
 		top:0;
 		transition: all .2s ease-in-out;
-		color:#008;
+		color:black;
 	}
 	.links a:hover{
 		text-decoration:none;
@@ -92,9 +86,8 @@
 	
 	footer{	
 		font-size:14px;		
-		border-radius:10px;
-		background-color:rgba(68, 68, 119,0.85);/*#444477; */
-		color:#ccc;
+        background: rgba(0, 0, 0, 0.5); 
+		color:white;
 		font-weight:bold;
 		padding:10px;
 	}

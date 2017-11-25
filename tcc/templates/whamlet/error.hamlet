@@ -1,0 +1,8 @@
+                    <div ."section">
+                        <div ."container fundo1">
+                            <div ."row">
+                                <div ."col-md-12">
+                                  <h1>_{MsgErro}
+                                  <h3>_{MsgErro1}
+                                  <p>_{MsgErro2}
+                                  <br>_{MsgErro3} 

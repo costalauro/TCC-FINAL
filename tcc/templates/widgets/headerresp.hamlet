@@ -1,0 +1,35 @@
+                    <nav ."navbar navbar-default navbar-static-top menu"> 
+                        <div ."container">
+                            <div ."navbar-header">
+                                <button type="button" ."navbar-toggle" data-toggle="collapse" data-target="#navbar-ex-collapse">
+                                    <span ."sr-only">Navegação
+                                    <span ."icon-bar">
+                                    <span ."icon-bar">
+                                    <span ."icon-bar">
+                                <a ."navbar-brand" href=@{HomeR}>Sistreina
+                            <div ."collapse navbar-collapse dropdown" #"navbar-ex-collapse">
+                                <ul ."nav navbar-nav navbar-right">
+                                    <li>
+                                        <a href=@{RespR}>_{MsgHome}
+                                    <li>
+                                        <div ."dropdown">
+                                            <button ."btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">Outros
+                                            <ul ."dropdown-menu" role="menu" aria-labelledby="menu1">
+                                                <li role="presentation">
+                                                    <a role="menuitem" tabindex="-1" href=@{CadFuncionarioR}>Cadastrar Funcionário
+                                                <li role="presentation">
+                                                    <a role="menuitem" tabindex="-1" href=@{ListFuncionarioR}>Listar Funcionários
+                                                <li role="presentation">
+                                                    <a role="menuitem" tabindex="-1" href=@{CadDepartamentoR}>Cadastrar Departamento
+                                                <li role="presentation">
+                                                    <a role="menuitem" tabindex="-1" href=@{ListDepartamentoR}>Listar Departamentos
+                                                <li role="presentation">
+                                                    <a role="menuitem" tabindex="-1" href=@{CadProfissaoR}>Cadastrar Profissão
+                                                <li role="presentation">
+                                                    <a role="menuitem" tabindex="-1" href=@{ListProfissaoR}>Listar Profissões
+                                                <li role="presentation">
+                                                    <a role="menuitem" tabindex="-1" href=@{CadTreinamentoR}>Cadastrar Treinamento
+                                                    
+                                    <li>
+                                        <a href=@{LogoutR}>Logout
+                                    

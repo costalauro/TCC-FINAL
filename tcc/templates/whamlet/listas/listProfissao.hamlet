@@ -1,0 +1,17 @@
+                <div ."section">
+                    <header ."container">
+                        <div ."row">
+                            <div ."col-md-6">
+                                <h2 ."central">_{MsgAdmin7}
+                            <div ."col-md-6">
+                                <h3 ."txtadmin"> _{MsgCadastro3} <br>
+                                <table style="width:100%">
+                                    <tr>
+                                        <th>Nome Profissao
+                                        <th>Sigla
+                                        <th>Nome Departamento
+                                 $forall (Entity eq prof, Entity _ nc) <- profissoes
+                                     <tr>
+                                         <td> #{profissaoNome prof} 
+                                         <td> #{profissaoSigla prof} 
+                                         <td> #{departamentoNome nc} 

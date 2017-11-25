@@ -38,7 +38,7 @@ Treinamento
 Funcionarios
    nome Text
    idade Int
-   salario Int
+   salario Double
    dataNasc Day
    deptoid DepartamentoId
    profid ProfissaoId

@@ -1,0 +1,7 @@
+                <div ."section">
+                    <header ."container">
+                        <div ."row">
+                            <div ."col-md-6">
+                                ^{widgetForm CadFuncionarioR enctype widget funcWid} 
+                            
+                                      
