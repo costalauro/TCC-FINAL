@@ -1,0 +1,7 @@
+document.getElementById("treinBtn").onclick = function () {
+        location.href = "@{ListTreinamentoR}";
+};
+
+document.getElementById("deptBtn").onclick = function () {
+        location.href = "@{ListDepartamentoR}";
+};

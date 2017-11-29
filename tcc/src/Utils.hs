@@ -24,7 +24,10 @@ logWid :: Widget
 logWid = [whamlet| 
     Entrar
 |]
-
+userWid :: Widget
+userWid = [whamlet| 
+    Cadastrar Usuário
+|]
 funcWid :: Widget
 funcWid = [whamlet| 
     Cadastrar Funcionário
@@ -43,16 +46,18 @@ profWid = [whamlet|
 treinWid :: Widget
 treinWid = [whamlet| 
     Cadastrar Treinamento
-|]        
+|]
+
+detWidget = do   
+            toWidget $(juliusFile "templates/julius/detalhe.julius") 
+            
 masterWidget = do
             addStylesheet $ StaticR css_bootstrap_css
             addStylesheet $ StaticR css_fontawesomemin_css
-            addStylesheet $ StaticR css_main_css  
             addScriptRemote "https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"
             addScriptRemote "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
             toWidgetHead $(hamletFile "templates/hamlet/head.hamlet")
             toWidget $(luciusFile "templates/lucius/principal.lucius")
-            toWidget $(luciusFile "templates/lucius/main.lucius")
             toWidget $(luciusFile "templates/lucius/bootstrap.lucius")
 
 customWidget :: Widget -> Widget
@@ -66,6 +71,13 @@ respWidget :: Widget -> Widget
 respWidget hamletWidget = do
             masterWidget
             $(whamletFile "templates/widgets/headerresp.hamlet") 
+            hamletWidget
+            $(whamletFile "templates/widgets/footer.hamlet") 
+            
+funcWidget :: Widget -> Widget
+funcWidget hamletWidget = do
+            masterWidget
+            $(whamletFile "templates/widgets/headerfunc.hamlet") 
             hamletWidget
             $(whamletFile "templates/widgets/footer.hamlet") 
 
@@ -83,7 +95,7 @@ widgetForm x enctype widget newWidget = [whamlet|
                 ^{newWidget}
             <form method=post action=@{x} enctype=#{enctype}>
                 ^{widget}
-                <input ."btn btn-primary" type="reset"  #"limpar">
-                <input ."btn btn-primary" type="submit"  #"cadastrar">
+                <input ."btn btn-danger" type="reset"  #"limpar">
+                <input ."btn btn-success" type="submit"  #"cadastrar">
             <p>_{MsgCadastro}
 |]

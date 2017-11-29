@@ -3,3 +3,26 @@
                             <div ."row">
                                 <div ."col-md-12">
                                     <h1 ."central">_{MsgBemVindo}
+                    <div ."container">                                       
+                        <div ."container col-md-6">
+                            <div ."fundo3 col-md-12">
+                                <h2>_{MsgMenuQuemSomos1}
+                            <div ."fundo4 col-md-12">
+                                <br>
+                                <p>_{MsgQuemSomos1}
+                                <p>_{MsgQuemSomos2}
+                                <br>
+                                <br>
+                                <br>
+                                <br>
+                        <div ."container col-md-6">
+                            <div ."fundo3 col-md-12">
+                                <h2>_{MsgMenuNossosServiços1}
+                            <div ."fundo4 col-md-12">
+                                <br>
+                                <p>_{MsgNossosServiços1}
+                                <p>_{MsgNossosServiços2}
+                                <p>_{MsgNossosServiços3}
+                                <p>_{MsgNossosServiços4}
+                                <p>_{MsgNossosServiços5}
+                                <p>_{MsgNossosServiços6}                                

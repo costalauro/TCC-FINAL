@@ -1,17 +1,23 @@
                 <div ."section">
-                    <header ."container">
+                    <header ."container fundo1">
                         <div ."row">
-                            <div ."col-md-6">
+                            <div ."col-md-12">
                                 <h2 ."central">_{MsgAdmin7}
-                            <div ."col-md-6">
+                            <div ."col-md-12">
                                 <h3 ."txtadmin"> _{MsgCadastro3} <br>
                                 <table style="width:100%">
                                     <tr>
-                                        <th>Nome Profissao
-                                        <th>Sigla
-                                        <th>Nome Departamento
-                                 $forall (Entity eq prof, Entity _ nc) <- profissoes
+                                        <th> Nome Profissao
+                                        <th> Sigla
+                                        <th> Nome Departamento
+                                        <th> Ação
+                                $forall (Entity profi prof, Entity _ nc) <- profissoes
                                      <tr>
                                          <td> #{profissaoNome prof} 
                                          <td> #{profissaoSigla prof} 
-                                         <td> #{departamentoNome nc} 
+                                         <td> #{departamentoNome nc}
+                                         <td>
+                                             <form method=get action=@{DetalheProfissaoR profi}> 
+                                                <input ."btn btn-primary" type="submit" value="Detalhe" #"detalhe"><br>
+                                             <form method=post action=@{DetalheProfissaoR profi}> 
+                                                <input ."btn btn-danger" type="submit" value="_{MsgDeletarBtn}" #"deletar"><br>

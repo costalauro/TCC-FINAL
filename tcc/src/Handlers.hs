@@ -25,13 +25,6 @@ import Network.Mail.Mime
 import Database.Persist.Postgresql
 
 mkYesodDispatch "Sistreina" pRoutes
-
-
-       
-loginForm :: Form (Text,Text)
-loginForm = renderDivs $ (,) <$>
-           areq textField (fieldSettingsLabel MsgTxtLogin) Nothing <*>
-           areq passwordField (fieldSettingsLabel MsgTxtSenha) Nothing
            
 getHomeR :: Handler Html
 getHomeR = defaultLayout $ do
@@ -42,9 +35,41 @@ getRespR :: Handler Html
 getRespR = defaultLayout $ do
         setTitle "Sistreina" 
         respWidget $(whamletFile "templates/whamlet/home.hamlet")
-        
 
--- Login        
+getFuncR :: Handler Html
+getFuncR = defaultLayout $ do
+        setTitle "Sistreina" 
+        funcWidget $(whamletFile "templates/whamlet/home.hamlet")
+        
+-- Usuario
+usuarioForm :: Form Usuario
+usuarioForm = renderDivs $ Usuario <$>   
+       areq textField (fieldSettingsLabel MsgTxtNome) Nothing <*>  
+       areq textField (fieldSettingsLabel MsgTxtEmail) Nothing <*>  
+       areq passwordField (fieldSettingsLabel MsgTxtSenha) Nothing <*>
+       areq (selectField $ optionsPairs [(MsgTxtResponsavellbl, Responsavel),(MsgTxtFuncionariolbl, Funcionario)]) (fieldSettingsLabel MsgForm4) Nothing
+       
+getCadUsuarioR :: Handler Html
+getCadUsuarioR = do  
+        (widget, enctype) <- generateFormPost usuarioForm
+        defaultLayout $ do 
+        setTitle "Sistreina -  Cadastro Usuario" 
+        respWidget $(whamletFile "templates/whamlet/cadastro/cadUsuario.hamlet")    
+        >> cadWidget
+        
+postCadUsuarioR :: Handler Html
+postCadUsuarioR = do
+           ((result, _), _) <- runFormPost usuarioForm
+           case result of 
+               FormSuccess user -> (runDB $ insert user) >> redirect SucessoR
+               _ -> redirect ErroR
+        
+-- Login    
+loginForm :: Form (Text,Text)
+loginForm = renderDivs $ (,) <$>
+           areq textField (fieldSettingsLabel MsgTxtLogin) Nothing <*>
+           areq passwordField (fieldSettingsLabel MsgTxtSenha) Nothing
+    
 getLoginR :: Handler Html
 getLoginR = do
         (widget, enctype) <- generateFormPost loginForm
@@ -61,9 +86,10 @@ postLoginR = do
                    case user of  
                        Nothing -> redirect LoginR 
                        Just (Entity pid (Usuario nome login senha Responsavel)) ->  setSession "_ID" (pack $ show $ Responsavel) >> redirect RespR
-                       Just (Entity pid (Usuario nome login senha Funcionario)) ->  setSession "_ID" (pack $ show $ fromSqlKey pid) >> redirect (HomeR)
+                       Just (Entity pid (Usuario nome login senha Funcionario)) ->  setSession "_ID" (pack $ show $ fromSqlKey pid) >> redirect FuncR
                 _ -> redirect ErroR  
-                
+
+
 getLogoutR :: Handler Html
 getLogoutR = do
      deleteSession "_ID"
@@ -121,6 +147,20 @@ getListFuncionarioR = do
         setTitle "Sistreina - Lista Funcionarios" 
         respWidget $(whamletFile "templates/whamlet/listas/listFuncionarios.hamlet") 
         >> listWidget
+
+getDetalheFuncionarioR :: FuncionariosId -> Handler Html
+getDetalheFuncionarioR fid = do
+      funcionario <- runDB $ get404 fid
+      defaultLayout $ do 
+            setTitle "Sistreina - Funcionario" 
+            respWidget $(whamletFile "templates/whamlet/detalhe/funcionario.hamlet")   
+            >> detWidget
+
+
+postDetalheFuncionarioR :: FuncionariosId -> Handler Html
+postDetalheFuncionarioR fid = do
+     runDB $ delete fid
+     redirect ListFuncionarioR
         
 -- Departamento
 
@@ -150,12 +190,27 @@ postCadDepartamentoR = do
                
 getListDepartamentoR :: Handler Html        
 getListDepartamentoR = do
-        departamento <- runDB $ selectList [] [Asc DepartamentoNome]
+        departamentos <- runDB $ selectList [] [Asc DepartamentoNome]
         defaultLayout $ do 
         setTitle "Sistreina - Lista de Departamento" 
         respWidget $(whamletFile "templates/whamlet/listas/listDepartamento.hamlet")      
         >> listWidget
 
+
+getDetalheDepartamentoR :: DepartamentoId -> Handler Html
+getDetalheDepartamentoR did = do
+      departamento <- runDB $ get404 did
+      defaultLayout $ do 
+            setTitle "Sistreina - Departamento" 
+            respWidget $(whamletFile "templates/whamlet/detalhe/departamento.hamlet")   
+            >> detWidget
+
+
+postDetalheDepartamentoR :: DepartamentoId -> Handler Html
+postDetalheDepartamentoR did = do
+     runDB $ delete did
+     redirect ListDepartamentoR
+     
 -- Profissao
 
 profissaoForm :: Form Profissao
@@ -190,7 +245,21 @@ getListProfissaoR = do
         setTitle "Sistreina - Lista Profissoes" 
         respWidget $(whamletFile "templates/whamlet/listas/listProfissao.hamlet") 
         >> listWidget
-        
+
+getDetalheProfissaoR :: ProfissaoId -> Handler Html
+getDetalheProfissaoR pid = do
+      profissao <- runDB $ get404 pid
+      defaultLayout $ do 
+            setTitle "Sistreina - Profissao" 
+            respWidget $(whamletFile "templates/whamlet/detalhe/profissao.hamlet")   
+            >> detWidget
+
+
+postDetalheProfissaoR :: ProfissaoId -> Handler Html
+postDetalheProfissaoR pid = do
+     runDB $ delete pid
+     redirect ListProfissaoR
+    
 -- Treinamento
 
 treinamentoForm :: Form Treinamento
@@ -222,15 +291,48 @@ postCadTreinamentoR = do
            case result of 
                FormSuccess treins -> (runDB $ insert treins) >> redirect SucessoR
                _ -> redirect ErroR
+
+getListTreinamentoR :: Handler Html        
+getListTreinamentoR = do 
+        treinamentos <- runDB $ (rawSql "SELECT ??, ?? FROM treinamento INNER JOIN profissao ON treinamento.profid=profissao.id" [])::Handler [(Entity Treinamento, Entity Profissao)] 
+        defaultLayout $ do 
+        setTitle "Sistreina - Lista Treinamentos" 
+        respWidget $(whamletFile "templates/whamlet/listas/listTreinamento.hamlet") 
+        >> listWidget
                
+getDetalheTreinamentoR :: TreinamentoId -> Handler Html
+getDetalheTreinamentoR tid = do
+      treinamento <- runDB $ get404 tid
+      defaultLayout $ do 
+            setTitle "Sistreina - Treinamento" 
+            respWidget $(whamletFile "templates/whamlet/detalhe/treinamento.hamlet")   
+            >> detWidget
+
+postDetalheTreinamentoR :: TreinamentoId -> Handler Html
+postDetalheTreinamentoR tid = do
+     runDB $ delete tid
+     redirect ListTreinamentoR
+     
 getErroR :: Handler Html
 getErroR = defaultLayout $ do  
         setTitle "Sistreina - Erro!" 
         respWidget $(whamletFile "templates/whamlet/error.hamlet")  
-        toWidgetHead $(hamletFile "templates/hamlet/headhome.hamlet")
+        toWidgetHead $(hamletFile "templates/hamlet/head.hamlet")
+
+getErro2R :: Handler Html
+getErro2R = defaultLayout $ do  
+        setTitle "Sistreina - Erro!" 
+        respWidget $(whamletFile "templates/whamlet/error.hamlet")  
+        toWidgetHead $(hamletFile "templates/hamlet/headfunc.hamlet")
 
 getSucessoR :: Handler Html
 getSucessoR = defaultLayout $ do  
         setTitle "Sistreina - Sucesso!"  
         respWidget $(whamletFile "templates/whamlet/sucesso.hamlet") 
-        toWidgetHead $(hamletFile "templates/hamlet/headhome.hamlet") 
+        toWidgetHead $(hamletFile "templates/hamlet/head.hamlet") 
+        
+getSucesso2R :: Handler Html
+getSucesso2R = defaultLayout $ do  
+        setTitle "Sistreina - Sucesso!"  
+        respWidget $(whamletFile "templates/whamlet/sucesso.hamlet") 
+        toWidgetHead $(hamletFile "templates/hamlet/headfunc.hamlet") 

@@ -1,7 +1,7 @@
                 <div ."section">
-                    <header ."container fundo2">
+                    <header ."container fundo1">
                         <div ."row">
                             <div ."col-md-12">
-                                ^{widgetForm CadTreinamentoR enctype widget treinWid} 
+                                ^{widgetForm CadUsuarioR enctype widget userWid} 
                             
                                       

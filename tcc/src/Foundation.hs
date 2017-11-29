@@ -76,7 +76,21 @@ instance Yesod Sistreina where
     
     isAuthorized HomeR _      = return Authorized
     isAuthorized LoginR _     = return Authorized
-    
+    isAuthorized ErroR _      = return Authorized
+    isAuthorized SucessoR _   = return Authorized
+    isAuthorized Erro2R _      = return Authorized
+    isAuthorized Sucesso2R _   = return Authorized
+    isAuthorized RespR _ = isAdmin
+    isAuthorized FuncR _ = return Authorized
+    isAuthorized CadUsuarioR _  = isAdmin
+    isAuthorized CadDepartamentoR _  = isAdmin
+    isAuthorized CadProfissaoR _  = isAdmin
+    isAuthorized CadFuncionarioR _  = isAdmin
+    isAuthorized CadTreinamentoR _  = isAdmin
+    isAuthorized ListDepartamentoR _  = isAdmin
+    isAuthorized ListProfissaoR _  = isAdmin
+    isAuthorized ListFuncionarioR _  = isAdmin
+    isAuthorized ListTreinamentoR _  = isAdmin
     isAuthorized _ _          = isUser
     
 isAdmin = do

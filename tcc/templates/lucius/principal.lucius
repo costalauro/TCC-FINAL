@@ -1,5 +1,5 @@
 
-	body{
+	/* body{
 		font-family:verdana,sans-serif;
 		font-size:16px;
 		background: no-repeat center center fixed;
@@ -8,16 +8,18 @@
   		-o-background-size: cover;
   		background-size: cover;
   		height: 100%;
-	}
+	} */
 	
 	.navbar-brand:before{
 
 		}
 	
-	header{
-        background: rgba(0, 0, 0, 0.5); 
+	.navbarbolada{
 		border-radius:10px;
-		color:#008;
+		color:#000000;
+        background: rgba(0, 0, 0, 0.5); 
+		color:white;
+		font-weight:bold;
 	}
 	
 	
@@ -33,7 +35,16 @@
 		color:#008;
 	}
 	.fundo1{
-		background-color:rgba(232,255 ,255, 0.85);
+		background-color:rgba(0, 168, 168, 0.85);
+	}
+	.fundo2{
+		background-color:rgba(19, 193, 16, 0.71);
+	}
+	.fundo3{
+		background-color:rgba(1, 14, 1, 0.56);
+	}
+	.fundo4{
+		background-color:rgba(64, 181, 171, 0.44);
 	}
 	a{
 		text-decoration:none;	
@@ -42,7 +53,7 @@
 	}
 	a:hover{	
 		transition: 0.5s;
-		color:#008;
+		color:white;
 		font-weight:bold;
 		text-decoration:none;
 	}
@@ -70,12 +81,12 @@
 		position:relative;
 		top:0;
 		transition: all .2s ease-in-out;
-		color:black;
+		color:white;
 	}
 	.links a:hover{
 		text-decoration:none;
 		top:-4px;
-		color:#000080;
+		color:#000000;
 		font-weight:normal;
 		background-color:transparent;
 		box-shadow:0 4px 3px #999

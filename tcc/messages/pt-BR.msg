@@ -19,15 +19,10 @@ CadastroBtn: Enviar
 Contato10: Digite sua mensagem
 Contato11: Enviar
 Contato12: Limpar
-Contato1: Entre em contato conosco por meio de um dos nossos canais de comunicação e feche negócio com a gente.
-Contato2: Nossa central de atendimento funciona de segunda a sexta-feira das 8h às 18h e aos sábados das 8h às 13h.
 Contato3: Nome
 Contato4: Email
 Contato5: Assunto
 Contato6: Mensagem
-Contato7: Digite seu nome
-Contato8: Digite seu email
-Contato9: Digite o assunto
 Contato: Contato
 DeletarBtn: Deletar
 Endereco: Endereço:
@@ -36,11 +31,20 @@ Erro1: A página que você digitou não existe ou está fora do ar.
 Erro2: Por favor aguarde alguns segundos, você será redirecionado para nossa página principal.
 Erro3: Obrigada!
 Erro: Desculpe,
-Filial: Filiais
+MenuQuemSomos1: Quem somos nós
+QuemSomos1: A Sistreina é uma empresa comprometida com o crescimento profissional de todos os tralhadores proporcionando uma plataforma de gestão de treinamentos empresarial.
+QuemSomos2: Com o objetivo também de se formar na FATEC, Diego, Lauro e Vitor criaram este site como trabalho de conclusão de curso.
+MenuNossosServiços1: Nosso Serviços
+NossosServiços1: - Base unificada de funcionários;
+NossosServiços2: - Gestão de usuários com facilidade;
+NossosServiços3: - Criação de treinamentos simplificada;
+NossosServiços4: - Relacionamento do funcionário com o treinamento;
+NossosServiços5: - Envio de convites;
+NossosServiços6: - Aviso de treinamento;
 Form1: Cliente
 Form2: Funcionário
 Form3: Administrador
-Form4: Tipo
+Form4: Profile
 Form: Cadastro de
 Funcionario1: Perfil de
 Funcionario2: Você está logado como
@@ -53,15 +57,10 @@ Logout: Sair
 LogoutTxt: Você foi deslogado com sucesso.
 MapaSite: Mapa do Site
 Mensagem: Mensagem
-Navegacao: Navigacao
-Perfil1: Perfil de
-Perfil2: Login
-Perfil3: Senha
-Perfil4: Perfil Filial 
-Perfil5: Perfil Cliente
+Navegacao: Navegaço
 Perfil: Perfil do Usuário
 Entrar: Entrar
-Sucesso: Formulário enviado com sucesso.
+Sucesso: Solicitação enviada com sucesso.
 TxtAcao: Remover
 TxtCargo: Cargo
 TxtCidade: Cidade
@@ -79,3 +78,5 @@ TxtNome: Nome
 TxtSenha: Senha
 TxtTelefone: Telefone
 Voltar: Voltar
+TxtResponsavellbl: Responsável
+TxtFuncionariolbl: Funcionário

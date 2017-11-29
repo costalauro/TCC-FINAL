@@ -1,0 +1,8 @@
+                    <div ."section">
+                        <div ."container fundo1">
+                            <div ."row"> 
+                                <div ."col-md-12 text-center">
+                                    <h1> Detalhe departamento
+                                    <p> Nome : #{departamentoNome departamento} 
+                                    <p> Sigla : #{departamentoSigla departamento}  
+                                    <a href=@{ListDepartamentoR}> _{MsgVoltar}

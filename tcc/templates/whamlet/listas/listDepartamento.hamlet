@@ -1,17 +1,23 @@
                 <div ."section">
-                    <header ."container">
+                    <header ."container fundo1">
                         <div ."row">
-                            <div ."col-md-6">
+                            <div ."col-md-12">
                                 <h2 ."central">_{MsgAdmin10}
-                            <div ."col-md-6">
+                            <div ."col-md-12">
                                 <h3 ."txtadmin"> _{MsgCadastro4} <br>
                                 <table style="width:100%">
                                     <tr>
                                         <th> Nome Departamento  
                                         <th> Sigla
-                                $forall Entity did dept <- departamento
+                                        <th> Ação
+                                 $forall Entity did dept <- departamentos
                                      <tr>
                                          <td> #{departamentoNome dept} 
-                                         <td> #{departamentoSigla dept} 
+                                         <td> #{departamentoSigla dept}
+                                         <td>
+                                             <form method=get action=@{DetalheDepartamentoR did}> 
+                                                <input ."btn btn-primary" type="submit" value="Detalhe" #"detalhe"><br>
+                                             <form method=post action=@{DetalheDepartamentoR did}> 
+                                                <input ."btn btn-danger" type="submit" value="_{MsgDeletarBtn}" #"deletar"><br>
                                          
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              

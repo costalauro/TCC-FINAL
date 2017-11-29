@@ -1,19 +1,24 @@
                 <div ."section">
-                    <header ."container">
+                    <header ."container fundo1">
                         <div ."row">
-                            <div ."col-md-6">
+                            <div ."col-md-12">
                                 <h2 ."central">_{MsgAdmin5}
-                            <div ."col-md-6">
+                            <div ."col-md-12">
                                 <h3 ."txtadmin"> _{MsgCadastro2} <br>
                                 <table style="width:100%">
                                     <tr>
                                         <th> Nome Funcionário
                                         <th> Profissão
                                         <th> Departamento
-                                $forall (Entity eq func, Entity _ dept,Entity _ prof) <- funcionarios
+                                        <th> Ação
+                                $forall (Entity fid func, Entity _ dept,Entity _ prof) <- funcionarios
                                      <tr>
                                          <td> #{funcionariosNome func} 
                                          <td> #{profissaoNome prof} 
                                          <td> #{departamentoNome dept}  
-                                         
+                                         <td>
+                                             <form method=get action=@{DetalheFuncionarioR fid}> 
+                                                <input ."btn btn-primary" type="submit" value="Detalhe" #"detalhe"><br>
+                                             <form method=post action=@{DetalheFuncionarioR fid}> 
+                                                <input ."btn btn-danger" type="submit" value="_{MsgDeletarBtn}" #"deletar"><br>
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              

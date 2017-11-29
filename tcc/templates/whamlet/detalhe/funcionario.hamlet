@@ -1,0 +1,7 @@
+                    <div ."section">
+                        <div ."container fundo2">
+                            <div ."row"> 
+                                <div ."col-md-12 text-center">
+                                    <h1> Detalhe Funcionário
+                                    <p> Nome : #{funcionariosNome funcionario}                                 
+                                    <a href=@{ListFuncionarioR}>_{MsgVoltar}
