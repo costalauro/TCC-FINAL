@@ -58,7 +58,6 @@ masterWidget = do
             addScriptRemote "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
             toWidgetHead $(hamletFile "templates/hamlet/head.hamlet")
             toWidget $(luciusFile "templates/lucius/principal.lucius")
-            toWidget $(luciusFile "templates/lucius/bootstrap.lucius")
 
 customWidget :: Widget -> Widget
 customWidget hamletWidget = do

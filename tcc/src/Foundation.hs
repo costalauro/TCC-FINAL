@@ -80,8 +80,9 @@ instance Yesod Sistreina where
     isAuthorized SucessoR _   = return Authorized
     isAuthorized Erro2R _      = return Authorized
     isAuthorized Sucesso2R _   = return Authorized
-    isAuthorized RespR _ = isAdmin
+    isAuthorized (StaticR _) _ = return Authorized
     isAuthorized FuncR _ = return Authorized
+    isAuthorized RespR _ = isAdmin
     isAuthorized CadUsuarioR _  = isAdmin
     isAuthorized CadDepartamentoR _  = isAdmin
     isAuthorized CadProfissaoR _  = isAdmin

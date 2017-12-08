@@ -317,7 +317,7 @@ getErroR :: Handler Html
 getErroR = defaultLayout $ do  
         setTitle "Sistreina - Erro!" 
         respWidget $(whamletFile "templates/whamlet/error.hamlet")  
-        toWidgetHead $(hamletFile "templates/hamlet/head.hamlet")
+        toWidgetHead $(hamletFile "templates/hamlet/headresp.hamlet")
 
 getErro2R :: Handler Html
 getErro2R = defaultLayout $ do  
@@ -329,7 +329,7 @@ getSucessoR :: Handler Html
 getSucessoR = defaultLayout $ do  
         setTitle "Sistreina - Sucesso!"  
         respWidget $(whamletFile "templates/whamlet/sucesso.hamlet") 
-        toWidgetHead $(hamletFile "templates/hamlet/head.hamlet") 
+        toWidgetHead $(hamletFile "templates/hamlet/headresp.hamlet") 
         
 getSucesso2R :: Handler Html
 getSucesso2R = defaultLayout $ do  

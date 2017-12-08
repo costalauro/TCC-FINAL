@@ -10,12 +10,12 @@
                                         <th> Nome Treinamento
                                         <th> Nome Profissao
                                         <th> Ação
-                                $forall (Entity tid trein, Entity _ prof) <- treinamentos
-                                    <tr>
-                                        <td> #{treinamentoNome trein} 
-                                        <td> #{profissaoNome prof}
-                                        <td>
-                                            <form method=get action=@{DetalheTreinamentoR tid}> 
-                                                <input ."btn btn-primary" type="submit" value="Detalhe" #"detalhe"><br>
-                                            <form method=post action=@{DetalheTreinamentoR tid}> 
-                                                <input ."btn btn-danger" type="submit" value="_{MsgDeletarBtn}" #"deletar"><br>
+                                 $forall (Entity tid trein, Entity _ prof) <- treinamentos
+                                     <tr>
+                                         <td> #{treinamentoNome trein} 
+                                         <td> #{profissaoNome prof}
+                                         <td>
+                                             <form method=get action=@{DetalheTreinamentoR tid}> 
+                                                 <input ."btn btn-primary" type="submit" value="Detalhe" #"detalhe"><br>
+                                             <form method=post action=@{DetalheTreinamentoR tid}> 
+                                                 <input ."btn btn-danger" type="submit" value="_{MsgDeletarBtn}" #"deletar"><br>

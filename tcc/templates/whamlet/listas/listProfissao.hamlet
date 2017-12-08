@@ -11,13 +11,13 @@
                                         <th> Sigla
                                         <th> Nome Departamento
                                         <th> Ação
-                                $forall (Entity profi prof, Entity _ nc) <- profissoes
-                                     <tr>
-                                         <td> #{profissaoNome prof} 
-                                         <td> #{profissaoSigla prof} 
-                                         <td> #{departamentoNome nc}
-                                         <td>
-                                             <form method=get action=@{DetalheProfissaoR profi}> 
-                                                <input ."btn btn-primary" type="submit" value="Detalhe" #"detalhe"><br>
-                                             <form method=post action=@{DetalheProfissaoR profi}> 
-                                                <input ."btn btn-danger" type="submit" value="_{MsgDeletarBtn}" #"deletar"><br>
+                                 $forall (Entity profi prof, Entity _ nc) <- profissoes
+                                      <tr>
+                                          <td> #{profissaoNome prof} 
+                                          <td> #{profissaoSigla prof} 
+                                          <td> #{departamentoNome nc}
+                                          <td>
+                                              <form method=get action=@{DetalheProfissaoR profi}> 
+                                                 <input ."btn btn-primary" type="submit" value="Detalhe" #"detalhe"><br>
+                                              <form method=post action=@{DetalheProfissaoR profi}> 
+                                                 <input ."btn btn-danger" type="submit" value="_{MsgDeletarBtn}" #"deletar"><br>
