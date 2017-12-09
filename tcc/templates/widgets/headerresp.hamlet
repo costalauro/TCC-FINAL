@@ -19,9 +19,13 @@
                                                     <a role="menuitem" tabindex="-1" href=@{CadTreinamentoR}>Cadastrar Treinamento
                                                 <li role="presentation">
                                                     <a role="menuitem" tabindex="-1" href=@{ListTreinamentoR}>Listar Treinamentos
+                                                <li role="presentation">
+                                                    <a role="menuitem" tabindex="-1" href=@{CadTreinamentoFuncR}>Relacionar Treinamentos - Funcionários
+                                                <li role="presentation">
+                                                    <a role="menuitem" tabindex="-1" href=@{ListTreinamentoFuncR}>Acompanhar treinamentos ativos
                                     <li>
                                         <div ."dropdown">
-                                            <button ."btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">Outros
+                                            <button ."btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">Cadastro
                                             <ul ."dropdown-menu" role="menu" aria-labelledby="menu1">
                                                 <li role="presentation">
                                                     <a role="menuitem" tabindex="-1" href=@{CadUsuarioR}>Cadastrar Usuário

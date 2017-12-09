@@ -48,6 +48,11 @@ treinWid = [whamlet|
     Cadastrar Treinamento
 |]
 
+treinFuncWid :: Widget
+treinFuncWid = [whamlet| 
+    Relacionar Treinamento - Funcionário
+|]
+
 detWidget = do   
             toWidget $(juliusFile "templates/julius/detalhe.julius") 
             

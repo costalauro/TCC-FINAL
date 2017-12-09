@@ -1,0 +1,7 @@
+                <div ."section">
+                    <header ."container fundo2">
+                        <div ."row">
+                            <div ."col-md-12">
+                                ^{widgetForm CadTreinamentoFuncR enctype widget treinFuncWid} 
+                            
+                                      

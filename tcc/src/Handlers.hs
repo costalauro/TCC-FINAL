@@ -102,6 +102,10 @@ func = do
        entidades <- runDB $ selectList [UsuarioTipo ==. Funcionario] [Asc UsuarioNome]
        optionsPairs $ fmap (\ent -> (usuarioNome $ entityVal ent, entityKey ent)) entidades  
 
+funcis = do
+       entidades <- runDB $ selectList [] [Asc FuncionariosNome] 
+       optionsPairs $ fmap (\ent -> (funcionariosNome $ entityVal ent, entityKey ent)) entidades  
+
 dptos = do
        entidades <- runDB $ selectList [] [Asc DepartamentoNome] 
        optionsPairs $ fmap (\ent -> (departamentoSigla $ entityVal ent, entityKey ent)) entidades
@@ -312,7 +316,37 @@ postDetalheTreinamentoR :: TreinamentoId -> Handler Html
 postDetalheTreinamentoR tid = do
      runDB $ delete tid
      redirect ListTreinamentoR
-     
+
+-- Treinamento
+
+treinaFuncForm :: Form TreinaFunc
+treinaFuncForm = renderDivs $ TreinaFunc <$>
+            areq (selectField treins) "Treinamento :" Nothing <*>
+            areq (selectField funcis) "Funcionário :" Nothing
+            
+getCadTreinamentoFuncR :: Handler Html
+getCadTreinamentoFuncR = do  
+        (widget, enctype) <- generateFormPost treinaFuncForm
+        defaultLayout $ do 
+        setTitle "Sistreina -  Relacionar Treinamentos - Funcionáro" 
+        respWidget $(whamletFile "templates/whamlet/relacionar/cadTreinamentoFunc.hamlet")    
+        >> cadWidget
+
+postCadTreinamentoFuncR :: Handler Html
+postCadTreinamentoFuncR = do
+           ((result, _), _) <- runFormPost treinaFuncForm
+           case result of 
+               FormSuccess treinFuncs -> (runDB $ insert treinFuncs) >> redirect SucessoR
+               _ -> redirect ErroR
+
+getListTreinamentoFuncR :: Handler Html        
+getListTreinamentoFuncR = do 
+       treinafunc <- runDB $ (rawSql "SELECT ??, ??,?? FROM treina_func INNER JOIN treinamento ON treina_func.treinaid=treinamento.id INNER JOIN funcionarios ON treina_func.funcid=funcionarios.id " [])::Handler [(Entity TreinaFunc, Entity Treinamento, Entity Funcionarios)]  
+       defaultLayout $ do 
+       setTitle "Sistreina - Acompanhar treinamentos ativos" 
+       respWidget $(whamletFile "templates/whamlet/listas/listTreinamentoFunc.hamlet") 
+       >> listWidget     
+
 getErroR :: Handler Html
 getErroR = defaultLayout $ do  
         setTitle "Sistreina - Erro!" 

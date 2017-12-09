@@ -15,11 +15,14 @@ pRoutes = [parseRoutes|
     /cad/departamento/  CadDepartamentoR GET POST
     /cad/profissao/  CadProfissaoR GET POST
     /cad/treinamento/  CadTreinamentoR GET POST
+    /rel/treinamentofuncionario/ CadTreinamentoFuncR GET POST
     
     /list/departamento/ ListDepartamentoR GET
     /list/profissao/ ListProfissaoR GET
     /list/funcionario/ ListFuncionarioR GET
     /list/treinamento/ ListTreinamentoR GET
+    /list/treinamentofuncionario/ ListTreinamentoFuncR GET
+    
     
     /detalhe/funcionario/#FuncionariosId DetalheFuncionarioR GET POST
     

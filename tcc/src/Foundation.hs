@@ -46,7 +46,6 @@ Funcionarios
    
 TreinaFunc
    treinaid TreinamentoId
-   profid ProfissaoId
    funcid FuncionariosId
    deriving Show
 

@@ -1,7 +1,7 @@
 Admin10: Lista de Departamentos
 Admin1: Cadastro Clientes
 Admin2: Cadastro Funcionários
-Admin3: Cadastro Filiais
+Admin3: Acompanhar treinamentos ativos
 Admin4: Adicionar
 Admin5: Lista de Funcionários
 Admin6: Ir
@@ -13,7 +13,8 @@ BemVindo: Seja bem vindo ao nosso site!
 Cadastro1: Treinamentos Cadastrados:
 Cadastro2: Funcionários Cadastrados:
 Cadastro3: Profissoes Cadastrados:
-Cadastro4: Departamentos Cadastradao:
+Cadastro4: Departamentos Cadastradas:
+Cadastro5: Treinamentos Ativos:
 Cadastro: Preencha os campos.
 CadastroBtn: Enviar
 Contato10: Digite sua mensagem
@@ -26,15 +27,14 @@ Contato6: Mensagem
 Contato: Contato
 DeletarBtn: Deletar
 Endereco: Endereço:
-Entrega: Entregas
 Erro1: A página que você digitou não existe ou está fora do ar.
 Erro2: Por favor aguarde alguns segundos, você será redirecionado para nossa página principal.
-Erro3: Obrigada!
+Erro3: Obrigado!
 Erro: Desculpe,
 MenuQuemSomos1: Quem somos nós
 QuemSomos1: A Sistreina é uma empresa comprometida com o crescimento profissional de todos os tralhadores proporcionando uma plataforma de gestão de treinamentos empresarial.
 QuemSomos2: Com o objetivo também de se formar na FATEC, Diego, Lauro e Vitor criaram este site como trabalho de conclusão de curso.
-MenuNossosServiços1: Nosso Serviços
+MenuNossosServiços1: Nossos serviços
 NossosServiços1: - Base unificada de funcionários;
 NossosServiços2: - Gestão de usuários com facilidade;
 NossosServiços3: - Criação de treinamentos simplificada;

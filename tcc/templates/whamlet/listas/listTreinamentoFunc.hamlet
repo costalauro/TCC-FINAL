@@ -1,0 +1,16 @@
+                <div ."section">
+                    <header ."container fundo2">
+                        <div ."row">
+                            <div ."col-md-12">
+                                <h2 ."central">_{MsgAdmin3}
+                            <div ."col-md-12">
+                                <h3 ."txtadmin"> _{MsgCadastro5} <br>
+                                <table style="width:100%">
+                                    <tr>
+                                        <th> Nome Treinamento
+                                        <th> Responsavel
+                                        <th> Ação
+                                 $forall (Entity tfid treinfunc, Entity _ trein, Entity _ func) <- treinafunc
+                                     <tr>
+                                         <td> #{treinamentoNome trein} 
+                                         <td> #{treinamentoResponsavel trein}
