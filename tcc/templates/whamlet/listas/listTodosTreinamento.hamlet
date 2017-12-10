@@ -1,0 +1,14 @@
+                <div ."section">
+                    <header ."container fundo1">
+                        <div ."row">
+                            <div ."col-md-12">
+                                <h2 ."central">_{MsgAdmin8}
+                            <div ."col-md-12">
+                                <h3 ."txtadmin"> _{MsgCadastro1} <br>
+                                <table style="width:100%">
+                                    <tr>
+                                        <th> Nome Treinamento
+                                        <th> Ação
+                                 $forall (Entity tid trein) <- treinamentos
+                                     <tr>
+                                         <td> #{treinamentoNome trein} 

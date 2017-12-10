@@ -12,6 +12,12 @@
                                     <li>
                                         <a href=@{FuncR}>_{MsgHome}
                                     <li>
+                                        <div ."dropdown">
+                                            <button ."btn btn-default dropdown-toggle" type="button" id="menu6" data-toggle="dropdown">Treinamentos
+                                            <ul ."dropdown-menu" role="menu" aria-labelledby="menu6">
+                                                <li role="presentation">
+                                                    <a role="menuitem" tabindex="-1" href=@{ListTodosTreinamentoR}>Todos os treinamentos
+                                    <li>
                                         <a href=@{ContaR}>Conta
                                     <li>
                                         <a href=@{LogoutR}>Logout

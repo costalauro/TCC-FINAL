@@ -121,7 +121,7 @@ getContaRespR = do
             case usuario of
                 Just usuario -> respWidget $(whamletFile "templates/whamlet/detalhe/conta.hamlet")   
             >> detWidget 
-                           
+      
 func = do
        entidades <- runDB $ selectList [UsuarioTipo ==. Funcionario] [Asc UsuarioNome]
        optionsPairs $ fmap (\ent -> (usuarioNome $ entityVal ent, entityKey ent)) entidades  
@@ -409,3 +409,12 @@ getSucesso2R = defaultLayout $ do
         setTitle "Sistreina - Sucesso!"  
         respWidget $(whamletFile "templates/whamlet/sucesso.hamlet") 
         toWidgetHead $(hamletFile "templates/hamlet/headfunc.hamlet") 
+        
+        
+getListTodosTreinamentoR :: Handler Html        
+getListTodosTreinamentoR = do 
+       treinamentos <- runDB $ selectList [TreinamentoTipo ==. Aberto] [Asc TreinamentoNome] 
+       defaultLayout $ do 
+       setTitle "Sistreina - Todos os treinamentos" 
+       respWidget $(whamletFile "templates/whamlet/listas/listTodosTreinamento.hamlet") 
+       >> listWidget
