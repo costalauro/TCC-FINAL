@@ -7,10 +7,15 @@
                                     <table style="width:100%">
                                         <tr>
                                             <th> Funcionário
-                                            <th> Presenca
+                                            <th> Presença
                                             <th> Ação
                                      $forall (Entity tfid treinfunc, Entity _ trein, Entity _ func) <- treinafunc
                                          <tr>
                                              <td> #{funcionariosNome func}
+                                             <td> Confirmada
                                              <td>
+                                                <form method=post action=@{RemoverTreinaFuncR tfid}> 
+                                                 <input ."btn btn-danger" type="submit" value="Remover inscrição" #"deletar">
+                                <div ."col-md-12">
+                                    <a href=@{ListTreinamentoFuncR}> _{MsgVoltar}
                                              

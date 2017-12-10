@@ -9,6 +9,7 @@ pRoutes = [parseRoutes|
     /static StaticR Static getStatic
     /login LoginR GET POST
     /logout LogoutR GET
+
     
     /cad/usuario/  CadUsuarioR GET POST
     /cad/funcionario/  CadFuncionarioR GET POST
@@ -34,6 +35,8 @@ pRoutes = [parseRoutes|
     /detalhe/treinamento/#TreinamentoId DetalheTreinamentoR GET POST
     
     /detalhe/listapresenca/#TreinaFuncId DetalheTreinamentoFuncR GET
+    
+    /detahle/remover/#TreinaFuncId RemoverTreinaFuncR POST
     
     /conta/minhaconta/ ContaR GET
     /conta/minhacontaResp/ ContaRespR GET

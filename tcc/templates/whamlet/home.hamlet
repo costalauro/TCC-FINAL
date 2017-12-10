@@ -1,8 +1,6 @@
                     <div ."section">
-                        <div ."container fundo1">
-                            <div ."row">
-                                <div ."col-md-12">
-                                    <h1 ."central">_{MsgBemVindo}
+                        <div ."container col-md-12 text-center">
+                                <img src=@{(StaticR img_imagemHomemTelaInicial_jpg)} ."img-responsive imgprincipal">
                     <div ."container">                                       
                         <div ."container col-md-6">
                             <div ."fundo3 col-md-12">
@@ -11,7 +9,6 @@
                                 <br>
                                 <p>_{MsgQuemSomos1}
                                 <p>_{MsgQuemSomos2}
-                                <br>
                                 <br>
                                 <br>
                                 <br>

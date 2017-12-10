@@ -6,8 +6,9 @@
                                     <span ."icon-bar">
                                     <span ."icon-bar">
                                     <span ."icon-bar">
-                                <a ."navbar-brand" href=@{HomeR}>SISTREINA
                             <div ."collapse navbar-collapse dropdown" #"navbar-ex-collapse">
+                                <a ."navbar-brand" href=@{HomeR}>
+                                    <img src=@{(StaticR img_logo_png)} ."img-responsive logotiponav">
                                 <ul ."nav navbar-nav navbar-right">
                                     <li>
                                         <a href=@{HomeR}>_{MsgHome}

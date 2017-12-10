@@ -80,14 +80,13 @@ instance Yesod Sistreina where
     errorHandler other = defaultErrorHandler other
     
     authRoute _ = Just LoginR
-    
+    isAuthorized (StaticR _) _ = return Authorized
     isAuthorized HomeR _      = return Authorized
     isAuthorized LoginR _     = return Authorized
     isAuthorized ErroR _      = return Authorized
     isAuthorized SucessoR _   = return Authorized
     isAuthorized Erro2R _      = return Authorized
     isAuthorized Sucesso2R _   = return Authorized
-    isAuthorized (StaticR _) _ = return Authorized
     isAuthorized FuncR _ = return Authorized
     isAuthorized RespR _ = return Authorized
     isAuthorized CadUsuarioR _  =return Authorized

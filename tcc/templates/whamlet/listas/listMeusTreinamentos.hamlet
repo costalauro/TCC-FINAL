@@ -8,7 +8,15 @@
                                 <table style="width:100%">
                                     <tr>
                                         <th> Nome Treinamento
-                                        <th> Ação
+                                        <th> Sala
+                                        <th> Sigla
+                                        <th> Qtd Pessoas
+                                        <th> Tempo duração
                                  $forall (Entity tid trein) <- treinamentos
                                      <tr>
                                          <td> #{treinamentoNome trein} 
+                                         <td> #{treinamentoSala trein} 
+                                         <td> #{treinamentoSigla trein}                                          
+                                         <td> #{treinamentoQtdPessoas trein} 
+                                         <td> #{treinamentoTempoDuracao trein}  
+                                         

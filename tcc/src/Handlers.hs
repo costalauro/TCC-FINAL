@@ -380,11 +380,17 @@ getListTreinamentoFuncR = do
        
 getDetalheTreinamentoFuncR :: TreinaFuncId -> Handler Html
 getDetalheTreinamentoFuncR tfid = do
-      treinafunc <- runDB $ (rawSql "SELECT ??, ??,?? FROM treina_func INNER JOIN treinamento ON treina_func.treinaid=treinamento.id INNER JOIN funcionarios ON treina_func.funcid=funcionarios.id " [])::Handler [(Entity TreinaFunc, Entity Treinamento, Entity Funcionarios)]    
+      treinafunc <- runDB $ (rawSql "SELECT ??, ??,?? FROM treina_func INNER JOIN treinamento ON treina_func.treinaid=treinamento.id INNER JOIN funcionarios ON treina_func.funcid=funcionarios.id WHERE treina_func.id = ?" [toPersistValue tfid])::Handler [(Entity TreinaFunc, Entity Treinamento, Entity Funcionarios)]    
       defaultLayout $ do
             setTitle "Sistreina - Detalhe treinamento" 
             respWidget $(whamletFile "templates/whamlet/detalhe/treinamentoFunc.hamlet")   
             >> detWidget
+
+postRemoverTreinaFuncR :: TreinaFuncId -> Handler Html
+postRemoverTreinaFuncR tfid = do
+     runDB $ delete tfid
+     redirect ListTreinamentoFuncR
+
 
 getErroR :: Handler Html
 getErroR = defaultLayout $ do  
@@ -420,8 +426,8 @@ getListTodosTreinamentoR = do
        >> listWidget
        
 getListMeusTreinamentoR :: Handler Html        
-getListMeusTreinamentoR = do 
-       treinamentos <- runDB $ selectList [] [Asc TreinamentoNome] 
+getListMeusTreinamentoR = do
+       treinamentos <- runDB $ (rawSql "SELECT ?? FROM treinamento INNER JOIN treina_func ON treinamento.id=treina_func.treinaid INNER JOIN funcionarios ON treina_func.funcid=funcionarios.id WHERE funcionarios.Nome = 'alexandre'" [])::Handler [(Entity Treinamento)]    
        defaultLayout $ do 
        setTitle "Sistreina - Meus treinamentos" 
        funcWidget $(whamletFile "templates/whamlet/listas/listMeusTreinamentos.hamlet") 
