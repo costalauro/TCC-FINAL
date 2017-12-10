@@ -17,6 +17,8 @@
                                             <ul ."dropdown-menu" role="menu" aria-labelledby="menu6">
                                                 <li role="presentation">
                                                     <a role="menuitem" tabindex="-1" href=@{ListTodosTreinamentoR}>Todos os treinamentos
+                                                <li role="presentation">
+                                                    <a role="menuitem" tabindex="-1" href=@{ListMeusTreinamentoR}>Meus Treinamentos
                                     <li>
                                         <a href=@{ContaR}>Conta
                                     <li>

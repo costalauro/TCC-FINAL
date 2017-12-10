@@ -100,6 +100,7 @@ instance Yesod Sistreina where
     isAuthorized ListFuncionarioR _  = return Authorized
     isAuthorized ListTreinamentoR _  = return Authorized
     isAuthorized ListTodosTreinamentoR _ = return Authorized
+    isAuthorized ListMeusTreinamentoR _ = return Authorized
     isAuthorized _ _          = isUser
     
 isAdmin = do

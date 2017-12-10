@@ -416,5 +416,13 @@ getListTodosTreinamentoR = do
        treinamentos <- runDB $ selectList [TreinamentoTipo ==. Aberto] [Asc TreinamentoNome] 
        defaultLayout $ do 
        setTitle "Sistreina - Todos os treinamentos" 
-       respWidget $(whamletFile "templates/whamlet/listas/listTodosTreinamento.hamlet") 
+       funcWidget $(whamletFile "templates/whamlet/listas/listTodosTreinamento.hamlet") 
+       >> listWidget
+       
+getListMeusTreinamentoR :: Handler Html        
+getListMeusTreinamentoR = do 
+       treinamentos <- runDB $ selectList [] [Asc TreinamentoNome] 
+       defaultLayout $ do 
+       setTitle "Sistreina - Meus treinamentos" 
+       funcWidget $(whamletFile "templates/whamlet/listas/listMeusTreinamentos.hamlet") 
        >> listWidget
