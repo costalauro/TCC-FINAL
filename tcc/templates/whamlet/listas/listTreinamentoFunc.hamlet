@@ -10,7 +10,10 @@
                                         <th> Nome Treinamento
                                         <th> Responsavel
                                         <th> Ação
-                                 $forall (Entity tfid treinfunc, Entity _ trein, Entity _ func) <- treinafunc
+                                 $forall (Entity tfid treinfunc, Entity _ trein, Entity _ func, Entity _ user) <- treinafunc
                                      <tr>
                                          <td> #{treinamentoNome trein} 
-                                         <td> #{treinamentoResponsavel trein}
+                                         <td> #{usuarioNome user}                                          
+                                         <td>
+                                             <form method=get action=@{DetalheTreinamentoFuncR tfid}> 
+                                                     <input ."btn btn-primary" type="submit" value="Detalhe" #"detalhe">

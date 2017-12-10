@@ -12,5 +12,7 @@
                                     <li>
                                         <a href=@{FuncR}>_{MsgHome}
                                     <li>
+                                        <a href=@{ContaR}>Conta
+                                    <li>
                                         <a href=@{LogoutR}>Logout
                                     

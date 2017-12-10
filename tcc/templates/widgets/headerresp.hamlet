@@ -41,7 +41,8 @@
                                                     <a role="menuitem" tabindex="-1" href=@{CadProfissaoR}>Cadastrar Profissão
                                                 <li role="presentation">
                                                     <a role="menuitem" tabindex="-1" href=@{ListProfissaoR}>Listar Profissões
-                
+                                    <li>
+                                        <a href=@{ContaRespR}>Conta
                                     <li>
                                         <a href=@{LogoutR}>Logout
                                     

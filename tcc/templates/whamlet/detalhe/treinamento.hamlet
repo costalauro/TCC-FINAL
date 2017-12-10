@@ -4,7 +4,6 @@
                                 <div ."col-md-12 text-center">
                                     <h1> Detalhe treinamento
                                     <p> Nome : #{treinamentoNome treinamento} 
-                                    <p> Responsavel : #{treinamentoResponsavel treinamento}  
                                     <p> Sala : #{treinamentoSala treinamento}
                                     <p> Qtd. Pessoas : #{treinamentoQtdPessoas treinamento}                                 
                                     <a href=@{ListTreinamentoR}>_{MsgVoltar}

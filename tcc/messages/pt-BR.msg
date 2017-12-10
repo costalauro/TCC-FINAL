@@ -45,6 +45,9 @@ Form1: Cliente
 Form2: Funcionário
 Form3: Administrador
 Form4: Profile
+Form5: TipoTreinamento
+Form6: Presenca
+Form7: Confirmacao
 Form: Cadastro de
 Funcionario1: Perfil de
 Funcionario2: Você está logado como
@@ -80,3 +83,9 @@ TxtTelefone: Telefone
 Voltar: Voltar
 TxtResponsavellbl: Responsável
 TxtFuncionariolbl: Funcionário
+TxtAbertolbl: Aberto
+TxtFechadolbl: Fechado
+TxtConfirmadalbl: Confirmada
+TxtNaoConfirmadalbl: NaoConfirmada
+TxtObrigatorialbl: Obrigatoria
+TxtNaoObrigatorialbl: NaoObrigatoria

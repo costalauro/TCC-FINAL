@@ -19,10 +19,14 @@ import Text.Lucius
 import Text.Hamlet
 import Text.Cassius 
 import Profile
+import TipoTreinamento
+import Presenca
+import Confirmacao
 import Yesod.Form.Jquery
 import Yesod.Static
 import Network.Mail.Mime
 import Database.Persist.Postgresql
+import Prelude
 
 mkYesodDispatch "Sistreina" pRoutes
            
@@ -85,8 +89,8 @@ postLoginR = do
                    user <- runDB $ selectFirst [UsuarioNome ==. login, UsuarioSenha ==. senha] []
                    case user of  
                        Nothing -> redirect LoginR 
-                       Just (Entity pid (Usuario nome login senha Responsavel)) ->  setSession "_ID" (pack $ show $ Responsavel) >> redirect RespR
-                       Just (Entity pid (Usuario nome login senha Funcionario)) ->  setSession "_ID" (pack $ show $ fromSqlKey pid) >> redirect FuncR
+                       Just (Entity pid (Usuario nome login senha Responsavel)) -> setSession "_ID" (pack  (show $ Usuario nome login senha Responsavel)) >> redirect RespR
+                       Just (Entity pid (Usuario nome login senha Funcionario)) -> setSession "_ID" (pack  (show $ Usuario nome login senha Funcionario)) >> redirect FuncR
                 _ -> redirect ErroR  
 
 
@@ -97,11 +101,35 @@ getLogoutR = do
             setTitle "Sistreina" 
             customWidget $(whamletFile "templates/whamlet/logout.hamlet") 
             toWidgetHead $(hamletFile "templates/hamlet/headhome.hamlet") 
+            
+getContaR :: Handler Html
+getContaR = do
+      sess <- lookupSession "_ID"
+      usuario <- return $ fmap (read . unpack) sess :: Handler (Maybe Usuario)
+      defaultLayout $ do 
+            setTitle "Sistreina - Conta" 
+            case usuario of
+                Just usuario -> funcWidget $(whamletFile "templates/whamlet/detalhe/conta.hamlet")   
+            >> detWidget 
+            
+getContaRespR :: Handler Html
+getContaRespR = do
+      sess <- lookupSession "_ID"
+      usuario <- return $ fmap (read . unpack) sess :: Handler (Maybe Usuario)
+      defaultLayout $ do 
+            setTitle "Sistreina - Conta" 
+            case usuario of
+                Just usuario -> respWidget $(whamletFile "templates/whamlet/detalhe/conta.hamlet")   
+            >> detWidget 
                            
 func = do
        entidades <- runDB $ selectList [UsuarioTipo ==. Funcionario] [Asc UsuarioNome]
        optionsPairs $ fmap (\ent -> (usuarioNome $ entityVal ent, entityKey ent)) entidades  
 
+funcResp = do
+       entidades <- runDB $ selectList [UsuarioTipo ==. Responsavel] [Asc UsuarioNome]
+       optionsPairs $ fmap (\ent -> (usuarioNome $ entityVal ent, entityKey ent)) entidades
+       
 funcis = do
        entidades <- runDB $ selectList [] [Asc FuncionariosNome] 
        optionsPairs $ fmap (\ent -> (funcionariosNome $ entityVal ent, entityKey ent)) entidades  
@@ -123,8 +151,8 @@ treins = do
 funcionarioForm :: Form Funcionarios
 funcionarioForm = renderDivs $ Funcionarios <$>   
        areq textField (fieldSettingsLabel MsgTxtNome) Nothing <*>  
-       areq intField "Idade :" Nothing <*>
-       areq doubleField "Salário :" Nothing <*>
+       areq textField "RG :" Nothing <*>
+       areq (selectField func) "Usuario relacionado :" Nothing <*>       
        areq dayField "Data Nascimento :" Nothing <*>
        areq (selectField dptos) "Departamentos :" Nothing <*>
        areq (selectField profs) "Profissoes :" Nothing
@@ -269,17 +297,20 @@ postDetalheProfissaoR pid = do
 treinamentoForm :: Form Treinamento
 treinamentoForm = renderDivs $ Treinamento <$>
             areq textField "Nome :" Nothing <*>
+            areq (selectField funcResp) "Responsável :" Nothing <*>
+            areq textField "Sala :" Nothing <*>
             areq textField FieldSettings{fsId=Just "hident2",
                            fsLabel="Abreviação :",
                            fsTooltip= Nothing,
                            fsName= Nothing,
                            fsAttrs=[("maxlength","10")]} Nothing <*>
-            areq textField "Responsavel :" Nothing <*>
-            areq textField "Sala :" Nothing <*>
             areq intField "Qtd. Pessoas :" Nothing <*>
             areq (selectField profs) "Profissões :" Nothing <*>
+            areq dayField "Data Validade :" Nothing <*>
             areq dayField "Data Aplicacao :" Nothing <*>
-            areq dayField "Data Validade :" Nothing
+            areq textField "Tempo duracao :" Nothing <*>
+            areq (selectField $ optionsPairs [(MsgTxtAbertolbl, Aberto),(MsgTxtFechadolbl, Fechado)]) (fieldSettingsLabel MsgForm5) Nothing <*>
+            areq (selectField $ optionsPairs [(MsgTxtObrigatorialbl, Obrigatoria),(MsgTxtNaoObrigatorialbl, NaoObrigatoria)]) (fieldSettingsLabel MsgForm6) Nothing
             
 getCadTreinamentoR :: Handler Html
 getCadTreinamentoR = do  
@@ -341,11 +372,19 @@ postCadTreinamentoFuncR = do
 
 getListTreinamentoFuncR :: Handler Html        
 getListTreinamentoFuncR = do 
-       treinafunc <- runDB $ (rawSql "SELECT ??, ??,?? FROM treina_func INNER JOIN treinamento ON treina_func.treinaid=treinamento.id INNER JOIN funcionarios ON treina_func.funcid=funcionarios.id " [])::Handler [(Entity TreinaFunc, Entity Treinamento, Entity Funcionarios)]  
+       treinafunc <- runDB $ (rawSql "SELECT ??, ??,??,?? FROM treina_func INNER JOIN treinamento ON treina_func.treinaid=treinamento.id INNER JOIN funcionarios ON treina_func.funcid=funcionarios.id INNER JOIN usuario ON treinamento.userid=usuario.id" [])::Handler [(Entity TreinaFunc, Entity Treinamento, Entity Funcionarios, Entity Usuario)]
        defaultLayout $ do 
        setTitle "Sistreina - Acompanhar treinamentos ativos" 
        respWidget $(whamletFile "templates/whamlet/listas/listTreinamentoFunc.hamlet") 
-       >> listWidget     
+       >> listWidget
+       
+getDetalheTreinamentoFuncR :: TreinaFuncId -> Handler Html
+getDetalheTreinamentoFuncR tfid = do
+      treinafunc <- runDB $ (rawSql "SELECT ??, ??,?? FROM treina_func INNER JOIN treinamento ON treina_func.treinaid=treinamento.id INNER JOIN funcionarios ON treina_func.funcid=funcionarios.id " [])::Handler [(Entity TreinaFunc, Entity Treinamento, Entity Funcionarios)]    
+      defaultLayout $ do
+            setTitle "Sistreina - Detalhe treinamento" 
+            respWidget $(whamletFile "templates/whamlet/detalhe/treinamentoFunc.hamlet")   
+            >> detWidget
 
 getErroR :: Handler Html
 getErroR = defaultLayout $ do  

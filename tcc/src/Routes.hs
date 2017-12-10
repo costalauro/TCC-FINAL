@@ -23,15 +23,14 @@ pRoutes = [parseRoutes|
     /list/treinamento/ ListTreinamentoR GET
     /list/treinamentofuncionario/ ListTreinamentoFuncR GET
     
-    
     /detalhe/funcionario/#FuncionariosId DetalheFuncionarioR GET POST
-    
     /detalhe/departamento/#DepartamentoId DetalheDepartamentoR GET POST
-    
     /detalhe/profissao/#ProfissaoId DetalheProfissaoR GET POST
-    
     /detalhe/treinamento/#TreinamentoId DetalheTreinamentoR GET POST
-
+    /detalhe/listapresenca/#TreinaFuncId DetalheTreinamentoFuncR GET
+    
+    /conta/minhaconta/ ContaR GET
+    /conta/minhacontaResp/ ContaRespR GET
     
     /sucesso SucessoR GET
     /erro ErroR GET

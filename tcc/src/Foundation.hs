@@ -12,8 +12,12 @@ import qualified Data.Text as T
 import Data.Text
 import Yesod.Form.Jquery
 import Profile
+import TipoTreinamento
+import Presenca
+import Confirmacao
 import Database.Persist.Postgresql
     ( ConnectionPool, SqlBackend, runSqlPool, runMigration )
+import Prelude
     
 data Sistreina = Sistreina {getStatic :: Static, connPool :: ConnectionPool}
 
@@ -26,24 +30,27 @@ Departamento
 
 Treinamento
     nome Text
-    responsavel Text
+    userid UsuarioId
     sala Text
     sigla Text sqltype=varchar(10)
     qtdPessoas Int
     profid ProfissaoId
     dataVal Day
     dataAplic Day
+    tempoDuracao Text
+    tipo TipoTreinamento
+    presenca Presenca
     deriving Show
 
 Funcionarios
    nome Text
-   idade Int
-   salario Double
+   rg Text
+   userid UsuarioId
    dataNasc Day
    deptoid DepartamentoId
    profid ProfissaoId
    deriving Show
-   
+
 TreinaFunc
    treinaid TreinamentoId
    funcid FuncionariosId
@@ -61,6 +68,7 @@ Usuario
    senha Text
    tipo Profile
    UniqueEmail email
+   deriving Read Show
 |]
 
 staticFiles "static"
@@ -81,16 +89,16 @@ instance Yesod Sistreina where
     isAuthorized Sucesso2R _   = return Authorized
     isAuthorized (StaticR _) _ = return Authorized
     isAuthorized FuncR _ = return Authorized
-    isAuthorized RespR _ = isAdmin
-    isAuthorized CadUsuarioR _  = isAdmin
-    isAuthorized CadDepartamentoR _  = isAdmin
-    isAuthorized CadProfissaoR _  = isAdmin
-    isAuthorized CadFuncionarioR _  = isAdmin
-    isAuthorized CadTreinamentoR _  = isAdmin
-    isAuthorized ListDepartamentoR _  = isAdmin
-    isAuthorized ListProfissaoR _  = isAdmin
-    isAuthorized ListFuncionarioR _  = isAdmin
-    isAuthorized ListTreinamentoR _  = isAdmin
+    isAuthorized RespR _ = return Authorized
+    isAuthorized CadUsuarioR _  =return Authorized
+    isAuthorized CadDepartamentoR _  = return Authorized
+    isAuthorized CadProfissaoR _  = return Authorized
+    isAuthorized CadFuncionarioR _  = return Authorized
+    isAuthorized CadTreinamentoR _  = return Authorized
+    isAuthorized ListDepartamentoR _  = return Authorized
+    isAuthorized ListProfissaoR _  = return Authorized
+    isAuthorized ListFuncionarioR _  = return Authorized
+    isAuthorized ListTreinamentoR _  = return Authorized
     isAuthorized _ _          = isUser
     
 isAdmin = do
@@ -99,6 +107,15 @@ isAdmin = do
         Nothing      -> AuthenticationRequired
         Just "Responsavel" -> Authorized
         Just _       -> Unauthorized "Somente responsáveis tem este tipo de acesso!"
+        
+ehAdmin :: Handler AuthResult
+ehAdmin = do 
+    sess <- lookupSession "_USR"
+    usr <- return $ fmap (read . unpack) sess :: Handler (Maybe Usuario)
+    case usr of 
+        Nothing -> return AuthenticationRequired
+        Just (Usuario _ _ _ Responsavel) -> return Authorized
+        Just _ -> return $ Unauthorized "VC NAO PERMISSAO"
 
 isUser = do
     mu <- lookupSession "_ID"

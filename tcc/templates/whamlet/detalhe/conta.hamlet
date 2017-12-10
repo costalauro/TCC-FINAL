@@ -1,0 +1,7 @@
+                    <div ."section">
+                        <div ."container fundo1">
+                            <div ."row"> 
+                                <div ."col-md-12 text-center">
+                                    <h1> Minha conta
+                                    <p> Nome : #{usuarioNome usuario}                                 
+                                    <p> email : #{usuarioEmail usuario}                                                                 

@@ -1,0 +1,16 @@
+                    <div ."section">
+                        <div ."container fundo2">
+                            <div ."row"> 
+                                <div ."col-md-12 text-center">
+                                    <h1> Detalhe treinamento
+                                <div ."col-md-12">
+                                    <table style="width:100%">
+                                        <tr>
+                                            <th> Funcionário
+                                            <th> Presenca
+                                            <th> Ação
+                                     $forall (Entity tfid treinfunc, Entity _ trein, Entity _ func) <- treinafunc
+                                         <tr>
+                                             <td> #{funcionariosNome func}
+                                             <td>
+                                             

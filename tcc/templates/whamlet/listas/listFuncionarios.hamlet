@@ -18,7 +18,7 @@
                                          <td> #{departamentoNome dept}  
                                          <td>
                                              <form method=get action=@{DetalheFuncionarioR fid}> 
-                                                 <input ."btn btn-primary" type="submit" value="Detalhe" #"detalhe"><br>
+                                                 <input ."btn btn-primary" type="submit" value="Detalhe" #"detalhe">
                                              <form method=post action=@{DetalheFuncionarioR fid}> 
-                                                 <input ."btn btn-danger" type="submit" value="_{MsgDeletarBtn}" #"deletar"><br>
+                                                <input ."btn btn-danger" type="submit" value="_{MsgDeletarBtn}" #"deletar">
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
